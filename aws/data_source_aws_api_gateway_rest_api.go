@@ -45,7 +45,8 @@ func dataSourceAwsApiGatewayRestApiRead(d *schema.ResourceData, meta interface{}
 	}
 
 	if len(matchedApis) == 0 {
-		return fmt.Errorf("no REST APIs with name %q found in this region", target)
+		log.Printf("[DEBUG] no REST APIs with name %q found in this region", target)
+		return nil
 	}
 	if len(matchedApis) > 1 {
 		return fmt.Errorf("multiple REST APIs with name %q found in this region", target)
